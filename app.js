@@ -31,14 +31,30 @@ function focusWindow(win) {
 }
 
 function placeWindow(win) {
-  if (matchMedia('(max-width: 720px)').matches) return;
-  const width = Math.min(Number(win.dataset.width || 760), desktop.clientWidth - 36);
-  const height = Math.min(Number(win.dataset.height || 560), desktop.clientHeight - 100);
+  if (matchMedia('(max-width: 767px)').matches) return;
+  const sideMargin = desktop.clientWidth <= 1024 ? 10 : 18;
+  const dockReserve = desktop.clientHeight <= 650 ? 72 : 100;
+  const width = Math.min(Number(win.dataset.width || 760), desktop.clientWidth - sideMargin * 2);
+  const height = Math.min(Number(win.dataset.height || 560), desktop.clientHeight - dockReserve);
   const offset = (cascade++ % 5) * 24;
   win.style.width = `${width}px`;
   win.style.height = `${height}px`;
-  win.style.left = `${Math.max(18, (desktop.clientWidth - width) / 2 + offset - 48)}px`;
-  win.style.top = `${Math.max(14, (desktop.clientHeight - height) / 2 + offset - 24)}px`;
+  win.style.left = `${Math.min(desktop.clientWidth - width - sideMargin, Math.max(sideMargin, (desktop.clientWidth - width) / 2 + offset - 48))}px`;
+  win.style.top = `${Math.min(desktop.clientHeight - height - dockReserve + 22, Math.max(8, (desktop.clientHeight - height) / 2 + offset - 24))}px`;
+}
+
+function fitWindowToViewport(win) {
+  if (matchMedia('(max-width: 767px)').matches || win.classList.contains('maximized')) return;
+  const sideMargin = desktop.clientWidth <= 1024 ? 10 : 18;
+  const dockReserve = desktop.clientHeight <= 650 ? 72 : 100;
+  const width = Math.min(Number(win.dataset.width || 760), desktop.clientWidth - sideMargin * 2);
+  const height = Math.min(Number(win.dataset.height || 560), desktop.clientHeight - dockReserve);
+  const currentLeft = Number.parseFloat(win.style.left) || sideMargin;
+  const currentTop = Number.parseFloat(win.style.top) || 8;
+  win.style.width = `${width}px`;
+  win.style.height = `${height}px`;
+  win.style.left = `${Math.min(Math.max(sideMargin, currentLeft), Math.max(sideMargin, desktop.clientWidth - width - sideMargin))}px`;
+  win.style.top = `${Math.min(Math.max(8, currentTop), Math.max(8, desktop.clientHeight - height - dockReserve + 22))}px`;
 }
 
 function openApp(name) {
@@ -85,7 +101,7 @@ function enableDragging(win) {
   const handle = win.querySelector('.titlebar');
   let drag = null;
   handle.addEventListener('pointerdown', event => {
-    if (event.target.closest('.traffic-lights') || win.classList.contains('maximized') || matchMedia('(max-width: 720px)').matches) return;
+    if (event.target.closest('.traffic-lights') || win.classList.contains('maximized') || matchMedia('(max-width: 767px)').matches) return;
     focusWindow(win);
     drag = { x: event.clientX, y: event.clientY, left: win.offsetLeft, top: win.offsetTop };
     handle.setPointerCapture(event.pointerId);
@@ -126,6 +142,14 @@ document.querySelector('#themeToggle').addEventListener('click', event => {
 
 document.querySelectorAll('a[aria-disabled="true"]').forEach(link => {
   link.addEventListener('click', event => event.preventDefault());
+});
+
+let resizeFrame;
+window.addEventListener('resize', () => {
+  cancelAnimationFrame(resizeFrame);
+  resizeFrame = requestAnimationFrame(() => {
+    windows.filter(win => win.classList.contains('open')).forEach(fitWindowToViewport);
+  });
 });
 
 const savedTheme = localStorage.getItem('resume-theme');
