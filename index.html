@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="macOS 데스크톱 스타일의 인터랙티브 웹 이력서">
+  <title>My Resume — Desktop</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%230a84ff'/%3E%3Cstop offset='1' stop-color='%23bf5af2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Cpath d='M18 18h28v28H18z' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M25 28h14M25 35h14' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="desktop" aria-label="인터랙티브 이력서 데스크톱">
+    <header class="menubar">
+      <div class="menubar__group">
+        <span class="apple" aria-hidden="true">●</span>
+        <strong id="activeAppName">Resume</strong>
+        <span class="menu-label">File</span>
+        <span class="menu-label">View</span>
+      </div>
+      <div class="menubar__group menubar__status">
+        <span aria-hidden="true">⌁</span>
+        <span aria-hidden="true">◔</span>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="테마 전환">☾</button>
+        <time id="clock">--:--</time>
+      </div>
+    </header>
+
+    <section class="desktop-area" id="desktopArea">
+      <p class="desktop-hint">Dock의 앱을 눌러 이력서를 둘러보세요.</p>
+
+      <article class="window open focused" data-app="about" data-width="760" data-height="540" aria-label="소개 창">
+        <header class="titlebar">
+          <div class="traffic-lights" aria-label="창 제어">
+            <button class="light close" type="button" aria-label="닫기">×</button>
+            <button class="light minimize" type="button" aria-label="최소화">−</button>
+            <button class="light maximize" type="button" aria-label="확대">+</button>
+          </div>
+          <div class="window-title">👤 About — Your Name</div>
+        </header>
+        <div class="window-body">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="breadcrumb">~/resume/about.md</div>
+              <h1>About</h1>
+            </div>
+            <div class="about-card">
+              <div class="avatar" aria-hidden="true">YN</div>
+              <div>
+                <h2>Your Name <span>(닉네임)</span></h2>
+                <p class="role">$ whoami → Your Role · Your Specialty</p>
+                <p class="bio">여기에 한두 문단 분량의 자기소개를 작성하세요. 어떤 문제를 잘 해결하는지, 어떤 방식으로 일하는지, 앞으로 무엇을 만들고 싶은지 자유롭게 적을 수 있습니다.</p>
+                <div class="meta">
+                  <span>⌖ Your City</span>
+                  <span>▣ 0+ years</span>
+                  <span>⌘ Your Focus</span>
+                </div>
+                <div class="actions">
+                  <a class="button primary" href="#" aria-disabled="true">↓ 이력서 PDF</a>
+                  <a class="button" href="#" aria-disabled="true">◈ GitHub</a>
+                  <a class="button" href="#" aria-disabled="true">✦ Portfolio</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <article class="window" data-app="skills" data-width="880" data-height="650" aria-label="기술 창">
+        <header class="titlebar">
+          <div class="traffic-lights" aria-label="창 제어">
+            <button class="light close" type="button" aria-label="닫기">×</button>
+            <button class="light minimize" type="button" aria-label="최소화">−</button>
+            <button class="light maximize" type="button" aria-label="확대">+</button>
+          </div>
+          <div class="window-title">⌘ Skills — Terminal</div>
+        </header>
+        <div class="window-body">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="breadcrumb">~/resume/skills.sh</div>
+              <h1>Skills</h1>
+            </div>
+            <div class="terminal">
+              <div class="terminal-bar"><i></i><i></i><i></i><span>you@resume — zsh — 80×12</span></div>
+              <div class="terminal-body">
+                <p><b>you@resume</b> <em>~/skills</em> $ cat stack.json</p>
+                <p class="muted"># 아래 항목을 나의 기술 스택으로 바꿔주세요.</p>
+                <p>{</p>
+                <p>&nbsp;&nbsp;<mark>"primary"</mark>: <q>["Skill A", "Skill B", "Skill C"]</q>,</p>
+                <p>&nbsp;&nbsp;<mark>"tools"</mark>: <q>["Tool A", "Tool B", "Tool C"]</q>,</p>
+                <p>&nbsp;&nbsp;<mark>"learning"</mark>: <q>["Next Skill"]</q></p>
+                <p>}</p>
+              </div>
+            </div>
+            <div class="card-grid skills-grid">
+              <article class="content-card"><div class="card-heading"><span class="square-icon blue">A</span><h2>Primary Skill</h2></div><div class="tags"><span>Skill A</span><span>Skill B</span><span>Skill C</span></div><p>주력 기술과 실제로 해결한 문제를 간단히 설명하는 영역입니다.</p></article>
+              <article class="content-card"><div class="card-heading"><span class="square-icon orange">B</span><h2>Secondary Skill</h2></div><div class="tags"><span>Tool A</span><span>Tool B</span></div><p>함께 사용하는 도구와 업무 범위를 적어주세요.</p></article>
+              <article class="content-card"><div class="card-heading"><span class="square-icon green">C</span><h2>Domain Knowledge</h2></div><div class="tags"><span>Domain A</span><span>Domain B</span></div><p>특히 잘 이해하고 있는 산업이나 문제 영역을 소개하세요.</p></article>
+              <article class="content-card"><div class="card-heading"><span class="square-icon purple">D</span><h2>Learning</h2></div><div class="tags"><span>Next Skill</span></div><p>현재 배우고 있거나 관심을 두고 있는 주제를 적어주세요.</p></article>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <article class="window" data-app="experience" data-width="900" data-height="680" aria-label="경력 창">
+        <header class="titlebar">
+          <div class="traffic-lights" aria-label="창 제어">
+            <button class="light close" type="button" aria-label="닫기">×</button>
+            <button class="light minimize" type="button" aria-label="최소화">−</button>
+            <button class="light maximize" type="button" aria-label="확대">+</button>
+          </div>
+          <div class="window-title">▣ Experience — Timeline</div>
+        </header>
+        <div class="window-body">
+          <section class="panel">
+            <div class="panel-header"><div class="breadcrumb">~/resume/experience/</div><h1>Experience</h1><p>주요 경력과 성과를 시간순으로 정리하세요.</p></div>
+            <div class="timeline">
+              <article class="timeline-item">
+                <time>20XX.00 — Present</time><h2>Company Name</h2><span class="position">Your Position · Team</span>
+                <div class="project-row"><strong>대표 업무 또는 프로젝트</strong><span>20XX</span><p>맡았던 역할, 해결한 문제, 결과를 수치와 함께 적으면 좋습니다.</p><div class="tags"><span>Keyword</span><span>Outcome</span><span>Tool</span></div></div>
+              </article>
+              <article class="timeline-item">
+                <time>20XX.00 — 20XX.00</time><h2>Previous Company</h2><span class="position">Previous Position · Team</span>
+                <div class="project-row"><strong>이전 경력의 핵심 성과</strong><span>20XX</span><p>어떤 상황에서 무엇을 개선했고 어떤 변화가 있었는지 작성하세요.</p><div class="tags"><span>Keyword</span><span>Impact</span></div></div>
+              </article>
+              <article class="timeline-item">
+                <time>20XX.00</time><h2>Beginning</h2><span class="position">첫 번째 커리어 또는 중요한 전환점</span>
+              </article>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <article class="window" data-app="projects" data-width="920" data-height="650" aria-label="프로젝트 창">
+        <header class="titlebar">
+          <div class="traffic-lights" aria-label="창 제어">
+            <button class="light close" type="button" aria-label="닫기">×</button>
+            <button class="light minimize" type="button" aria-label="최소화">−</button>
+            <button class="light maximize" type="button" aria-label="확대">+</button>
+          </div>
+          <div class="window-title">▰ Projects — Finder</div>
+        </header>
+        <div class="window-body finder-layout">
+          <aside class="finder-sidebar">
+            <small>FAVORITES</small>
+            <button class="selected" type="button">▰ All Projects</button>
+            <button type="button">★ Featured</button>
+            <button type="button">◌ Archive</button>
+            <small>TAGS</small>
+            <span><i class="tag-dot blue-dot"></i> Work</span>
+            <span><i class="tag-dot purple-dot"></i> Personal</span>
+          </aside>
+          <section class="panel finder-content">
+            <div class="panel-header"><div class="breadcrumb">~/resume/projects/</div><h1>Projects</h1></div>
+            <div class="project-grid">
+              <article class="project-card"><div class="project-cover cover-one">01</div><div class="project-copy"><div><h2>Project One</h2><span>Featured</span></div><p>프로젝트를 한 문장으로 소개하세요. 해결한 문제와 나의 기여를 중심으로 쓰면 좋습니다.</p><div class="tags"><span>Role</span><span>Stack</span><span>Result</span></div></div></article>
+              <article class="project-card"><div class="project-cover cover-two">02</div><div class="project-copy"><div><h2>Project Two</h2><span>Personal</span></div><p>두 번째 프로젝트의 핵심 기능과 성과를 작성하는 자리입니다.</p><div class="tags"><span>Role</span><span>Stack</span></div></div></article>
+              <article class="project-card"><div class="project-cover cover-three">03</div><div class="project-copy"><div><h2>Project Three</h2><span>Work</span></div><p>협업 방식이나 기술적 의사결정을 보여주는 설명을 추가하세요.</p><div class="tags"><span>Role</span><span>Impact</span></div></div></article>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <article class="window" data-app="growth" data-width="790" data-height="590" aria-label="성장 기록 창">
+        <header class="titlebar">
+          <div class="traffic-lights" aria-label="창 제어">
+            <button class="light close" type="button" aria-label="닫기">×</button>
+            <button class="light minimize" type="button" aria-label="최소화">−</button>
+            <button class="light maximize" type="button" aria-label="확대">+</button>
+          </div>
+          <div class="window-title">↗ Growth — Notes</div>
+        </header>
+        <div class="window-body notes-layout">
+          <aside class="notes-list">
+            <strong>Growth</strong>
+            <button class="selected" type="button"><span>나의 일하는 방식</span><small>오늘</small></button>
+            <button type="button"><span>배운 것</span><small>20XX</small></button>
+            <button type="button"><span>다음 목표</span><small>20XX</small></button>
+          </aside>
+          <section class="note-paper">
+            <div class="breadcrumb">~/resume/growth.md</div>
+            <h1>나의 일하는 방식</h1>
+            <time>20XX년 00월 00일</time>
+            <p>이곳에는 커리어를 지나오며 만들어진 나만의 원칙과 일하는 방식을 적어보세요.</p>
+            <blockquote>“나를 잘 보여주는 문장이나 앞으로 지키고 싶은 원칙을 적는 자리입니다.”</blockquote>
+            <h2>문제를 바라보는 방법</h2>
+            <p>어려운 문제를 어떻게 정의하고, 동료와 어떻게 풀어나가는지 설명하세요.</p>
+            <h2>계속 성장하는 방법</h2>
+            <p>꾸준히 배우는 습관, 피드백을 다루는 태도, 다음 목표를 적어주세요.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="window" data-app="contact" data-width="700" data-height="520" aria-label="연락처 창">
+        <header class="titlebar">
+          <div class="traffic-lights" aria-label="창 제어">
+            <button class="light close" type="button" aria-label="닫기">×</button>
+            <button class="light minimize" type="button" aria-label="최소화">−</button>
+            <button class="light maximize" type="button" aria-label="확대">+</button>
+          </div>
+          <div class="window-title">✉ Contact — Mail</div>
+        </header>
+        <div class="window-body">
+          <section class="panel contact-panel">
+            <div class="panel-header"><div class="breadcrumb">~/resume/contact.vcf</div><h1>Contact</h1></div>
+            <div class="contact-card">
+              <div class="avatar contact-avatar">YN</div>
+              <h2>Your Name</h2>
+              <p>새로운 기회와 흥미로운 대화를 기다리고 있습니다.</p>
+              <div class="contact-links">
+                <a href="#" aria-disabled="true"><span>✉</span><div><small>Email</small><strong>your-email@example.com</strong></div></a>
+                <a href="#" aria-disabled="true"><span>◈</span><div><small>GitHub</small><strong>github.com/your-id</strong></div></a>
+                <a href="#" aria-disabled="true"><span>⌂</span><div><small>Portfolio</small><strong>your-site.example</strong></div></a>
+              </div>
+              <small class="contact-note">연락처를 입력한 뒤 링크의 href를 함께 변경하세요.</small>
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <nav class="dock" aria-label="이력서 앱">
+      <button class="dock-item active" type="button" data-open="about" aria-label="소개 열기">
+        <span class="dock-icon icon-about">👤</span><span class="tooltip">About</span><span class="running-dot"></span>
+      </button>
+      <button class="dock-item" type="button" data-open="skills" aria-label="기술 열기">
+        <span class="dock-icon icon-skills">⌘</span><span class="tooltip">Skills</span><span class="running-dot"></span>
+      </button>
+      <button class="dock-item" type="button" data-open="experience" aria-label="경력 열기">
+        <span class="dock-icon icon-experience">▣</span><span class="tooltip">Experience</span><span class="running-dot"></span>
+      </button>
+      <button class="dock-item" type="button" data-open="projects" aria-label="프로젝트 열기">
+        <span class="dock-icon icon-projects">▰</span><span class="tooltip">Projects</span><span class="running-dot"></span>
+      </button>
+      <button class="dock-item" type="button" data-open="growth" aria-label="성장 기록 열기">
+        <span class="dock-icon icon-growth">↗</span><span class="tooltip">Growth</span><span class="running-dot"></span>
+      </button>
+      <span class="dock-separator" aria-hidden="true"></span>
+      <button class="dock-item" type="button" data-open="contact" aria-label="연락처 열기">
+        <span class="dock-icon icon-contact">✉</span><span class="tooltip">Contact</span><span class="running-dot"></span>
+      </button>
+    </nav>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
